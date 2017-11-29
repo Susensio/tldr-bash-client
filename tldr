@@ -88,7 +88,7 @@ Inf(){ Out "$INFNL$INFSP$INF$B$1$XB$XINF";}
 # $1: Style specification; Uses: color xcolor bg xbg mode xmode
 Style(){
 	local -l style
-	STYLES='' XSTYLES='' COLOR='' XCOLOR='' NL='' SP=''
+	STYLES='' XSTYLES='' COLOR='' XCOLOR='' NL='' SP='' DS=''
 	for style in $1
 	do
 		[[ $style = newline ]] && NL=$N
