@@ -103,15 +103,8 @@ Usage: tldr-lint [-h|--help] [-V|--version] [-q|--quiet] [<dir>] [<file>]
 ### Prerequisites
 coreutils, sed, grep, find
 
-# Contributing
 
-Please file an issue for a question, a bug or a feature request.
-Or even better, send a pull request!
+### Credits
 
-[tldr-bash-client github page](http://github.com/pepa65/tldr-bash-client "github.com/pepa65/tldr-bash-client")
-
-### License
-
+Forked from pepa65 https://github.com/pepa65/tldr-bash-client (GPL-3.0 license)
 Original tldr client in bash by Ray Lee http://github.com/raylee/tldr (MIT license)
-
-The **tldr-bash-client** is relicensed under GPLv3+ and **tldr-lint** is GPLv3+ as well.
