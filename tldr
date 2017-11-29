@@ -14,11 +14,12 @@ version='0.38'
 #  Colors: Black, Red, Green, Yellow, Blue, Magenta, Cyan, White
 #  BG: BlackBG, RedBG, GreenBG, YellowBG, BlueBG, MagentaBG, CyanBG, WhiteBG
 #  Modes: Bold, Underline, Italic, Inverse
-# 'Newline' can be added to the style list to add a newline before the element
-# and 'Space' to add a space at the start of the line
+# 'Newline' can be added to the style list to add a newline before the element,
+# 'Space' to add a space at the start of the line
+# and 'Dash' to add a space at the start of the line
 # (style items are separated by space, lower/uppercase mixed allowed)
 : "${TLDR_TITLE_STYLE:= Bold Yellow }"
-: "${TLDR_DESCRIPTION_STYLE:= Space Yellow }"
+: "${TLDR_DESCRIPTION_STYLE:= Dash Yellow }"
 : "${TLDR_EXAMPLE_STYLE:= Newline }"
 : "${TLDR_CODE_STYLE:= Space Bold Red }"
 : "${TLDR_VALUE_ISTYLE:= Bold Blue }"
