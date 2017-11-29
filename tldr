@@ -20,7 +20,7 @@ version='0.38'
 # (style items are separated by space, lower/uppercase mixed allowed)
 : "${TLDR_TITLE_STYLE:= Bold Yellow }"
 : "${TLDR_DESCRIPTION_STYLE:= Space Yellow }"
-: "${TLDR_EXAMPLE_STYLE:= Newline Dash White }"
+: "${TLDR_EXAMPLE_STYLE:= Newline Dash Space White }"
 : "${TLDR_CODE_STYLE:= Space Bold Red }"
 : "${TLDR_VALUE_ISTYLE:= Bold Blue }"
 # The Value style (above) is an Inline style: doesn't take Newline or Space
