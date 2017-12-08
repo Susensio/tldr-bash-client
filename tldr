@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set +vx -o pipefail
 [[ $- = *i* ]] && echo "Don't source this script!" && return 1
-version='0.38'
-# tldr-bash-client version 0.38
+version='0.39'
+# tldr-bash-client version 0.39
 # Bash client for tldr: community driven man-by-example
 # - forked from Ray Lee, https://github.com/raylee/tldr
 # - modified and expanded by pepa65: https://github.com/pepa65/tldr-bash-client
@@ -56,7 +56,8 @@ Usage(){
 
 		 $HDE[${HPL}platform$XHPL/]${HCO}command$XHCO:          Show page for ${HCO}command$XHCO (from ${HPL}platform$XHPL)
 
-		 ${HPL}platform$XHPL (optional) one of: ${HPL}common$XHPL, ${HPL}linux$XHPL, ${HPL}osx$XHPL, ${HPL}sunos$XHPL, ${HPL}current$XHPL (includes common)
+		 ${HPL}platform$XHPL (optional) one of: ${HPL}common$XHPL, ${HPL}linux$XHPL, ${HPL}osx$XHPL, ${HPL}sunos$XHPL, ${HPL}windows$XHPL,
+		                             ${HPL}current$XHPL (includes ${HPL}common$XHPL)
 
 		 ${HOP}option$XHOP is optionally one of:
 		  $HOP-s$XHOP, $HOP--search$XHOP ${HFI}regex$XHFI:         Search for ${HFI}regex$XHFI in all tldr pages
@@ -192,6 +193,8 @@ Config(){
 		Darwin) os='osx' ;;
 		Linux) os='linux' ;;
 		SunOS) os='sunos' ;;
+		CYGWIN*) os='windows' ;;
+		MINGW*) os='windows' ;;
 	esac
 	Init_term
 	[[ $TLDR_LESS = 0 ]] && 
@@ -404,7 +407,7 @@ Main(){
 		Find_regex "$2" "$err" ;;
 	-l|--list) [[ $2 ]] && {
 			platform=$2
-			[[ ,common,linux,osx,sunos,current, != *,$platform,* ]] &&
+			[[ ,common,linux,osx,sunos,windows,current, != *,$platform,* ]] &&
 				Err "Unknown platform $I$platform$XI" && Usage 12
 			[[ $3 ]] && Err "$nomore" && err=13
 		}
@@ -438,7 +441,7 @@ Main(){
 	[[ -z $page ]] && Err "No command specified" && Usage 24
 	[[ ${page:0:1} = '-' || $page = *' '-* ]] && Err "Only one option allowed" && Usage 25
 	[[ $page = */* ]] && platform=${page%/*} && page=${page##*/}
-	[[ $platform && ,common,linux,osx,sunos, != *,$platform,* ]] && {
+	[[ $platform && ,common,linux,osx,sunos,windows, != *,$platform,* ]] && {
 		Err "Unknown platform $I$platform$XI"
 		Usage 26
 	}
