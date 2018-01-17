@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set +vx
 [[ $- = *i* ]] && echo "Don't source this script!" && return 1
-version='0.11'
-# tldr-lint version 0.11
+version='0.13'
+# tldr-lint version 0.13
 # Linter for new syntax tldr source files
 # Old syntax files $f can be changed into new syntax files by:
 #  sed -i -e "1s/^# //" -e 's/^- //' -e 's/^`\(.*\)`$/    \1/' "$f"
 #  e=$(sed '1s/./=/g;q' "$f") sed -i "2i$e" "$f"
 # Part of http://github.com/pepa65/tldr-bash-client
-# Requirements: coreutils, sed, grep, find
+# Requirements: coreutils sed grep find
 
 Help(){  # $1: optional message
 	# Use: self, version
@@ -122,8 +122,10 @@ Check(){  # $1:filename
 		done
 	done <<<"$f"
 	[[ $line ]] && Flag "Newline required at the end of a page" $n
+	((examples>8)) && Flag "More than 8 examples"
 	Ok "$examples Examples" $((flags-check+!examples))
 	Ok "$B$1$XB" $flags
+	((flags)) && fail=1
 }
 
 U=$'\e[4m' XU=$'\e[24m' B=$'\e[1m' XB=$'\e[0m'
@@ -150,6 +152,7 @@ do
 	esac
 done
 
+fail=0
 [[ $file || $dir ]] || Help "No valid file or directory given"
 [[ $file ]] && Check "$file"
 [[ $dir ]] &&
@@ -158,4 +161,5 @@ done
 		Check "$REPLY"
 	done < <(find "$dir" -name '*.md')
 
+((fail)) && exit 2
 exit 0
